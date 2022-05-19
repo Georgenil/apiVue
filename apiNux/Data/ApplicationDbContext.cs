@@ -20,5 +20,7 @@ namespace apiNux.Data
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<Document> Documents { get; set; }
         public virtual DbSet<Supplier> Suppliers { get; set; }
+        public virtual DbSet<Material> Materials { get; set; }
+
     }
 }

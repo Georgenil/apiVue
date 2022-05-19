@@ -19,38 +19,24 @@ namespace apiNux.Controllers
         {
             _productService = productService;
         }
-        [HttpPost]
-        [Route("List-Producs")]
-        public async Task<IActionResult> List()
+        [HttpGet]
+        [Route("List-Products")]
+        public async Task<IActionResult> ListProducts()
         {
-            try
-            {
-                return new ResponseHelper().CreateResponse(await _productService.ListProducts());
-            }
-            catch
-            {
-                return StatusCode(500, "Ocorreu um erro");
-            }
+            return new ResponseHelper().CreateResponse(await _productService.ListProducts());
         }
         [HttpPost]
         [Route("List-ProductsWithFilter")]
         public IActionResult ListWithFilter(ProductFilterModel filter)
         {
-            try
-            {
-                return Ok(_productService.ListWithFilter(filter));
-            }
-            catch
-            {
-                return StatusCode(500, "Ocorreu um erro");
-            }
+            return Ok(_productService.ListWithFilter(filter));
         }
 
         [HttpPost]
-        [Route("Create-Product")]
-        public async Task<IActionResult> CreateProduct(Product product)
+        [Route("Add-Product")]
+        public async Task<IActionResult> AddProduct(Product product)
         {
-            return new ResponseHelper().CreateResponse(await _productService.CreateProduct(product));
+            return new ResponseHelper().CreateResponse(await _productService.AddProduct(product));
         }
     }
 }

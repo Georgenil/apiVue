@@ -37,6 +37,14 @@ namespace apiNux
             services.AddControllersWithViews();
 
             services.AddScoped<ProductService, ProductService>();
+            services.AddScoped<MaterialService, MaterialService>();
+            services.AddScoped<SupplierService, SupplierService>();
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy", builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+
+            });
 
             services.AddHttpClient();
             services.AddResponseCaching();
@@ -57,6 +65,7 @@ namespace apiNux
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "apiNux v1"));
             }
 
+            app.UseCors("CorsPolicy");
             app.UseHttpsRedirection();
 
             app.UseRouting();

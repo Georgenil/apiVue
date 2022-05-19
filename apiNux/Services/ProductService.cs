@@ -23,7 +23,7 @@ namespace apiNux.Services
         {
             try
             {
-                var findProducts = await db.Products.AsNoTracking().ToListAsync();
+                var findProducts = await db.Products.Include(x => x.UploadDocument).Include(x => x.Supplier).AsNoTracking().ToListAsync();
                 if (findProducts != null)
                 {
                     return new ResponseModel(200, findProducts);
@@ -40,7 +40,7 @@ namespace apiNux.Services
         {
             try
             {
-                IQueryable<Product> products = db.Products.OrderBy(x => x.CreateDate);
+                IQueryable<Product> products = db.Products.Include(x => x.UploadDocument).Include(x => x.Supplier).OrderBy(x => x.CreateDate);
 
                 products = filter.Search != "" && filter.Search != null ? db.Products.Where(x => x.Name.Contains(filter.Search)) : products;
                 products = filter.InitialDate != null ? db.Products.Where(x => x.UpdateDate >= filter.InitialDate) : products;
@@ -54,7 +54,7 @@ namespace apiNux.Services
                 throw e;
             }
         }
-        public async Task<ResponseModel> CreateProduct(Product product)
+        public async Task<ResponseModel> AddProduct(Product product)
         {
             try
             {
