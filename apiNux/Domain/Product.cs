@@ -12,6 +12,10 @@ namespace apiNux.Domain
         public string QuoteObservation { get; set; }
         public string BuyObservation { get; set; }
         public bool Status { get; set; }
+        public int Installments { get; set; }
+        public decimal Discont { get; set; }
+        public decimal Tariff { get; set; }
+        public int DeliveryTime { get; set; }
         public DateTime CreateDate { get; set; }
         public DateTime UpdateDate { get; set; }
         public int? DocumentId { get; set; }
