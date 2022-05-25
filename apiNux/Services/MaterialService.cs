@@ -38,11 +38,10 @@ namespace apiNux.Services
                 }
 
             }
-            catch (Exception e)
+            catch
             {
-                throw e;
+                return new ResponseModel(500, "Erro ao adicionar material");
             }
-            return new ResponseModel(500, "Erro ao adicionar material");
         }
     }
 }

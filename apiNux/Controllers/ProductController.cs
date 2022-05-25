@@ -25,6 +25,21 @@ namespace apiNux.Controllers
         {
             return new ResponseHelper().CreateResponse(await _productService.ListProducts());
         }
+
+        [HttpPost]
+        [Route("Get-Product/{productId}")]
+        public async Task<IActionResult> GetProductById(int productId)
+        {
+            return new ResponseHelper().CreateResponse(await _productService.GetProductById(productId));
+        }
+
+        [HttpPost]
+        [Route("Get-Document/{uploadDocumentId}")]
+        public IActionResult GetDocument(int uploadDocumentId)
+        {
+            return new ResponseHelper().CreateResponse(_productService.GetDocument(uploadDocumentId));
+        }
+
         [HttpPost]
         [Route("List-ProductsWithFilter")]
         public IActionResult ListWithFilter(ProductFilterModel filter)
@@ -37,6 +52,26 @@ namespace apiNux.Controllers
         public async Task<IActionResult> AddProduct(Product product)
         {
             return new ResponseHelper().CreateResponse(await _productService.AddProduct(product));
+        }
+        [HttpPut]
+        [Route("Add-Document")]
+        public async Task<IActionResult> AddDocument(Product product)
+        {
+            return new ResponseHelper().CreateResponse(await _productService.AddDocument(product));
+        }
+
+        [HttpPut]
+        [Route("Edit-Product")]
+        public async Task<IActionResult> UpdateProduct(Product product)
+        {
+            return new ResponseHelper().CreateResponse(await _productService.UpdateProduct(product));
+        }
+
+        [HttpPut]
+        [Route("Change-Status/{productId}")]
+        public async Task<IActionResult> ChangeStatusProduct(int productId)
+        {
+            return new ResponseHelper().CreateResponse(await _productService.ChangeStatusProduct(productId));
         }
     }
 }

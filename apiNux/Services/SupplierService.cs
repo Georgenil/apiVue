@@ -37,11 +37,10 @@ namespace apiNux.Services
                     return new ResponseModel(500, "Já existe um fornecedor com esse nome");
                 }
             }
-            catch (Exception e)
+            catch
             {
-                throw e;
+                return new ResponseModel(500, "Erro ao adicionar o fornecedor");
             }
-            return new ResponseModel(500, "Não foi possível adicionar o fornecedor");
         }
     }
 }
